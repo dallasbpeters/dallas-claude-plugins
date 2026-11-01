@@ -10,22 +10,22 @@
     {
       "name": "life-admin",
       "source": "./plugins/life-admin",
-      "description": "Inbox zero, safe file cleanup, a plain-markdown second brain, a weekly reset, a guided setup, and one home for Claude's files with a monthly sweep. Works with whatever email, calendar and folders you connect.",
-      "version": "0.3.0",
+      "description": "Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, a guided setup, and one home for Claude's files with a monthly sweep. Works with whatever email, calendar and folders you connect.",
+      "version": "0.4.0",
       "category": "productivity"
     },
     {
       "name": "proton-mail",
       "source": "./plugins/proton-mail",
       "description": "Proton Mail through Proton Mail Bridge on a Mac: search, read, archive, label, unsubscribe and draft. Never sends, never permanently deletes.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "productivity"
     },
     {
       "name": "dallas-os",
       "source": "./plugins/dallas-os",
       "description": "Dallas's personal wiring (Almanac Desk notes and tasks, mail, dallaspeters.com, Stripe). Not useful to anyone else.",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "category": "productivity"
     }
   ]

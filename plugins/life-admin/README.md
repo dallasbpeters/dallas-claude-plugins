@@ -6,7 +6,7 @@ Four helpers for keeping personal admin under control in Claude:
 |---|---|
 | "Clean up my email" | Groups mail by sender, archives the noise in bulk, stars what needs you, drafts easy replies, suggests unsubscribes. **Never sends or permanently deletes.** |
 | "Clean up my Downloads" | Scans the folder, shows a plan (sort by type, duplicates, old installers, junk), and moves only what you approve. **Never deletes:** extras go to a `_to_delete` folder you empty yourself, and every run can be undone. |
-| "Save this to my notes" / "What do I know about X?" | Keeps one folder of markdown notes (works with Obsidian) for projects, people, tasks and a daily journal. |
+| "Save this to my notes" / "What do I know about X?" | Keeps notes, people, projects and tasks in Almanac Desk when it's installed, or in one folder of markdown notes (works with Obsidian). |
 | "Weekly reset" | Email, calendar, tasks, notes and files in one sweep, ending with your top 3 for the week. |
 
 ## Setup

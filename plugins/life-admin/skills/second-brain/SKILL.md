@@ -1,54 +1,66 @@
 ---
 name: second-brain
-description: Keeps a person's scattered work, thoughts, people and history in one plain-markdown notes folder (an Obsidian vault) by capturing notes, filing the inbox, pulling in material from email, documents and past chats, and answering "what do I know about X". Use when someone says "save this to my notes", "capture this", "file my notes inbox", "set up my second brain", "what do I know about <client/person/project>", "pull this into my vault", or "organize my notes".
+description: Keeps a person's scattered work, thoughts, people and history in one place, Almanac Desk (or a plain-markdown folder when Almanac Desk isn't installed), by capturing notes and tasks, filing them, pulling in material from email, documents and past chats, and answering "what do I know about X". Use when someone says "save this to my notes", "capture this", "add a task", "file my notes", "set up my second brain", "what do I know about <client/person/project>", "pull this into my notes", or "organize my notes".
 ---
 
 # Second brain
 
-One folder of markdown files is the single place things live. Obsidian (or any markdown app) reads it; Claude reads and writes it directly through the connected folder. Nothing here needs a special app or account.
+One place holds notes, people, projects and tasks. **Almanac Desk** is that place when it's installed; otherwise a plain folder of markdown files is.
 
-## The layout
+## 1. Find the home
 
-Create only what's missing; never rename or move the person's existing folders without asking.
+- **Almanac Desk** is installed when `~/.almanac-desk/assistant/memory` exists (request access to `~/.almanac-desk` if needed). Use it, and read `~/.almanac-desk/assistant/AGENTS.md` first: it is the source of truth for Almanac's conventions and changes with app updates. Then follow **Almanac Desk** below.
+- **No Almanac Desk:** use the markdown folder the person names (an Obsidian vault, a Documents folder) and follow **Markdown folder** below. If they have neither, offer to set up the markdown folder.
+
+A person's personal setup (such as a personal plugin) can name a different home; that wins.
+
+## 2. Almanac Desk
+
+Everything is plain Markdown under `~/.almanac-desk/assistant/memory/`, shown in Almanac's notes panel.
+
+| What | Where |
+|---|---|
+| Quick capture, the day's notes | today's daily note, `memory/YYYY-MM-DD.md` |
+| Project, client, person or reference note | `memory/notes/<short-name>.md`, first line `# Title` |
+| Meeting | `memory/meetings/` (Almanac records these itself) |
+| Tasks | Almanac's **My Tasks**, only through the `almanac-tasks` CLI |
+
+**Grouping.** The sidebar's groups, favorites and icons live in `memory/.sidebar.json`. Grouping never moves files: to file a note, add its path (relative to `memory/`) to that group's `notes` list, and create the group if it doesn't exist. Keep daily notes where they are.
+
+**Tasks.** Run `~/.almanac-desk/bin/almanac-tasks` (never edit `tasks.json` by hand):
+- capture now, sort later: `almanac-tasks add "Title" --inbox`
+- a real task: `almanac-tasks add "Title" --due <date> --notes "..." [--requester NAME] [--quadrant 1-4]`
+- something someone owes: `almanac-tasks add "Title" --waiting-on NAME --due <follow-up day>`
+- done: `almanac-tasks done <id|text>`; list: `almanac-tasks list`
+In a note, mention a task as `[[task:<id>]]` so it shows as a live checkbox.
+
+**Blocks.** The notes panel renders plain Markdown blocks: callouts (`> [!note]`, `> [!important]`, `> [!warning]`), questions for the person (`> [!question] Title` with the options as bullets; they answer in the panel), and collapsed context (`> [!toggle]- Title`). Put long source material (an email thread, a transcript) inside a toggle.
+
+## 3. Markdown folder
 
 ```
-00 Inbox/        quick captures, unsorted
-10 Projects/     things with an end: one note per project ("Viaskai launch.md")
-20 Areas/        ongoing responsibilities: Home, Money, Health, Kids, Business
-30 People/       one note per person or client
-40 Notes/        ideas, references, how-tos, things learned
-50 Journal/      daily notes, YYYY-MM-DD.md
-60 Tasks.md      the one task list
-90 Archive/      finished projects and old material
+00 Inbox/    quick captures
+10 Projects/ one note per project
+20 Areas/    ongoing responsibilities
+30 People/   one note per person or client
+40 Notes/    ideas and references
+50 Journal/  daily notes, YYYY-MM-DD.md
+60 Tasks.md  the one task list: - [ ] task 📅 YYYY-MM-DD #project
+90 Archive/
 Templates/
 ```
 
-See `references/templates.md` for the note templates and frontmatter.
+Create only what's missing; never rename or move the person's own folders. Note templates are in `references/templates.md`.
 
-## Capture
+## 4. The work, either way
 
-- Write to `00 Inbox/` as `YYYY-MM-DD <short title>.md`, with the text as given plus a `source:` line (chat, email from X, voice memo).
-- Tasks go to `60 Tasks.md` as `- [ ] task 📅 YYYY-MM-DD #project` (date optional).
-
-## File the inbox
-
-For each inbox note: decide where it belongs, move it there (or merge it into an existing note under a dated heading), and add `[[links]]` to the people and projects it mentions, creating those notes if missing. Report what went where. Never delete a note; a merged note's original moves to `90 Archive/merged/`.
-
-## Pull things in
-
-When asked to bring in history from email, documents, calendar or past chats:
-1. Search the source for the subject (a client, a project, a person).
-2. Write or update the matching Project / Person note: a short summary at the top, then a dated log of what happened (decisions, prices, deadlines, contacts) with a link back to the source where there is one.
-3. Keep facts the person said or that the source shows; mark guesses as guesses.
-Go one subject at a time, and confirm the list of subjects before a big import.
-
-## Answer from it
-
-For "what do I know about X" or "where was I on Y", search the folder first (filenames, then full text), read the matching notes, and answer with links to them. Say plainly when the notes don't cover something.
+- **Capture:** write it down as given, with a `source:` line (chat, email from X, a call), into today's daily note or the inbox. Turn anything with a verb and a deadline into a task.
+- **File:** move or merge each captured note into its project, client or person note under a dated heading, and link the people and projects it mentions (`[[Name]]`), creating notes that are missing. Report what went where. Never delete a note; a merged original goes to the archive (markdown) or stays where it is and is left out of the groups (Almanac).
+- **Pull things in:** for a client or project, search the source (email, documents, calendar, past chats), then write or update its note: a short summary at the top, then a dated log of decisions, prices, deadlines and contacts, each linking back to its source. Confirm the list of subjects before a big import, and go one subject at a time.
+- **Answer from it:** for "what do I know about X" or "where was I on Y", search the notes first (filenames, then full text), read the matching ones, and answer with links to them. Say plainly when the notes don't cover something.
 
 ## Rules
 
-- Plain markdown, `[[wikilinks]]`, YAML frontmatter. No proprietary formats.
-- Edit in place; never rewrite a whole note from memory, and never drop text the person wrote.
+- Plain Markdown only. Edit in place; never rewrite a whole note from memory or drop text the person wrote.
 - Don't store passwords, account numbers or ID numbers in notes; leave a pointer ("in 1Password") instead.
-- Sensitive notes (health, legal, money) stay where the person puts them and are never quoted into other notes.
+- Keep work notes and personal notes apart (different groups or folders). Never copy an employer's confidential details into a personal or client note.

@@ -1,8 +1,10 @@
 {
   "name": "dallas-os",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Dallas's own setup (not for general use): wires life-admin to Almanac Desk notes and tasks, Proton and Gmail, the dallaspeters.com connector, and Stripe.",
   "author": {
     "name": "Dallas Peters"
-  }
+  },
+  "icon": "./logo.png",
+  "homepage": "https://github.com/dallasbpeters/dallas-claude-plugins"
 }

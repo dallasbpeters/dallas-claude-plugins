@@ -1,10 +1,12 @@
+<img src="assets/logo.png" alt="Dallas Peters" width="96" height="96">
+
 # Dallas's Claude plugins
 
 Plugins that help Claude with personal admin. Nothing here sends email, deletes files, or changes anything without asking.
 
 | Plugin | For | What it does |
 |---|---|---|
-| **life-admin** | anyone | Inbox zero, safe file cleanup, a markdown second brain (works with Obsidian), a weekly reset, and a guided "set me up". |
+| **life-admin** | anyone | Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, and a guided "set me up". |
 | **proton-mail** | Proton Mail users on a Mac | Lets Claude work in a Proton inbox through Proton Mail Bridge. Drafts only; never sends or permanently deletes. |
 | **dallas-os** | Dallas only | Points the above at Dallas's Almanac Desk notes and tasks, mail, dallaspeters.com and Stripe. |
 

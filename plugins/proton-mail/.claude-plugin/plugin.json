@@ -1,13 +1,24 @@
 {
   "name": "proton-mail",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Proton Mail for Claude through Proton Mail Bridge on a Mac: search, read, archive, label, flag, unsubscribe and draft. Never sends, never permanently deletes.",
-  "author": { "name": "Dallas Peters" },
-  "keywords": ["proton", "email", "bridge", "imap"],
+  "author": {
+    "name": "Dallas Peters"
+  },
+  "keywords": [
+    "proton",
+    "email",
+    "bridge",
+    "imap"
+  ],
   "mcpServers": {
     "proton-mail": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/server/server.mjs"]
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/server/server.mjs"
+      ]
     }
-  }
+  },
+  "icon": "./logo.png",
+  "homepage": "https://github.com/dallasbpeters/dallas-claude-plugins"
 }

@@ -11,7 +11,7 @@
       "name": "life-admin",
       "source": "./plugins/life-admin",
       "description": "Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, a guided setup, a money review (subscriptions, past-due bills, what to cancel), and one home for Claude's files with a monthly sweep. Works with whatever email, calendar, folders and finance connector you connect.",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "category": "productivity"
     },
     {

@@ -3,12 +3,13 @@
 tidy.py - look at a messy folder, propose a cleanup, apply it, undo it.
 
 Nothing is ever deleted. Files are only moved:
-  - into sorted folders (Images, Documents, ...), or
+  - into sorted folders (Images, Documents, ...), or, with --to-home, into the
+    home folder's own folders (~/Pictures, ~/Documents, ~/Movies, ...), or
   - into a "_to_delete" folder the person empties themselves.
 Every move is written to an undo log, so `undo` puts everything back.
 
 Usage:
-  python3 tidy.py scan  FOLDER [--out plan.json] [--old-days 180] [--big-mb 200]
+  python3 tidy.py scan  FOLDER [--to-home] [--out plan.json] [--old-days 180] [--big-mb 200]
   python3 tidy.py apply plan.json [--only sort,duplicates,installers,...]
   python3 tidy.py undo  FOLDER/_tidy/undo-<timestamp>.json
 
@@ -42,6 +43,32 @@ PARTIALS = {".crdownload", ".part", ".download", ".tmp"}
 SCREENSHOT_PREFIXES = ("screenshot", "screen shot", "cleanshot", "capture")
 SKIP_DIRS = {"_tidy", "_to_delete", ".git", "node_modules", ".Trash"}
 SORTED_DIRS = set(KINDS) | {"Installers", "Screenshots", "Other"}
+# --to-home: where each kind lands in the home folder. Kinds not listed keep
+# their own name as a new folder in ~/ (~/Design, ~/Archives, ~/Other, ...).
+HOME_FOLDERS = {
+    "Images": "Pictures",
+    "Videos": "Movies",
+    "Audio": "Music",
+    "Documents": "Documents",
+    "Spreadsheets": "Documents",
+    "Presentations": "Documents",
+    "Screenshots": "Screenshots",
+}
+
+
+def tidy_dir(root, to_home):
+    """Where the plan and undo logs live. With --to-home they go in a hidden
+    ~/.tidy/<folder> so the folder being emptied isn't left with a _tidy folder."""
+    if to_home:
+        return Path.home() / ".tidy" / Path(root).name
+    return Path(root) / "_tidy"
+
+
+def rel_or_abs(path, root):
+    try:
+        return str(path.relative_to(root))
+    except ValueError:
+        return str(path)
 
 
 def human(n):
@@ -88,8 +115,12 @@ def walk(root, top_only):
             yield Path(dirpath) / name
 
 
-def scan(root, old_days, big_mb, top_only, deep_duplicates=False):
+def scan(root, old_days, big_mb, top_only, deep_duplicates=False, to_home=False):
     root = root.resolve()
+    home = Path.home().resolve()
+    if to_home and root == home:
+        sys.exit("--to-home sorts a folder into your home folder; it can't sort the home folder itself")
+    trash = (home / "_to_delete") if to_home else Path("_to_delete")
     now = time.time()
     files = []
     for p in walk(root, top_only):
@@ -139,14 +170,22 @@ def scan(root, old_days, big_mb, top_only, deep_duplicates=False):
         elif rel.suffix.lower() in INSTALLERS and age_days > 14:
             reason = "installers"
         if reason:
-            actions.append({"from": f["path"], "to": str(Path("_to_delete") / reason / rel), "group": reason, "size": f["size"]})
+            actions.append({"from": f["path"], "to": str(trash / reason / rel), "group": reason, "size": f["size"]})
             continue
         # Sort only loose files at the top level; existing subfolders are the person's own system.
         if len(rel.parts) == 1:
             kind = kind_of(rel)
-            dest = Path(kind)
-            if kind in ("Screenshots",) or age_days > old_days:
-                dest = dest / datetime.fromtimestamp(f["mtime"]).strftime("%Y")
+            year = datetime.fromtimestamp(f["mtime"]).strftime("%Y")
+            if to_home:
+                # Into the person's own folders; only screenshots get year folders,
+                # so ~/Documents doesn't fill up with 2023/ 2024/ folders.
+                dest = home / HOME_FOLDERS.get(kind, kind)
+                if kind == "Screenshots":
+                    dest = dest / year
+            else:
+                dest = Path(kind)
+                if kind in ("Screenshots",) or age_days > old_days:
+                    dest = dest / year
             actions.append({"from": f["path"], "to": str(dest / rel.name), "group": "sort", "size": f["size"]})
 
     big = sorted((f for f in files if f["size"] >= big_mb * 1024 * 1024), key=lambda f: -f["size"])[:25]
@@ -159,6 +198,7 @@ def scan(root, old_days, big_mb, top_only, deep_duplicates=False):
 
     return {
         "root": str(root),
+        "to_home": to_home,
         "scanned_at": datetime.now().isoformat(timespec="seconds"),
         "file_count": len(files),
         "total_bytes": sum(f["size"] for f in files),
@@ -184,8 +224,8 @@ def unique(dest):
 def apply(plan_path, only):
     plan = json.loads(Path(plan_path).read_text())
     root = Path(plan["root"])
-    log_dir = root / "_tidy"
-    log_dir.mkdir(exist_ok=True)
+    log_dir = tidy_dir(root, plan.get("to_home", False))
+    log_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     log_path = log_dir / f"undo-{stamp}.json"
     moved, skipped = [], 0
@@ -196,10 +236,10 @@ def apply(plan_path, only):
         if not src.exists():
             skipped += 1
             continue
-        dest = unique(root / a["to"])
+        dest = unique(root / a["to"])  # an absolute "to" (--to-home) replaces root
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.move(str(src), str(dest))
-        moved.append({"from": str(src.relative_to(root)), "to": str(dest.relative_to(root))})
+        moved.append({"from": str(src.relative_to(root)), "to": rel_or_abs(dest, root)})
         # Written as we go, so an interrupted run can still be undone.
         log_path.write_text(json.dumps({"root": str(root), "moves": moved}, indent=1))
     print(json.dumps({"moved": len(moved), "skipped_missing": skipped, "undo_log": str(log_path) if moved else None}))
@@ -229,6 +269,7 @@ def main():
     s.add_argument("--big-mb", type=int, default=200)
     s.add_argument("--top-only", action="store_true", help="only look at files directly in the folder")
     s.add_argument("--deep-duplicates", action="store_true", help="also flag duplicate copies inside subfolders")
+    s.add_argument("--to-home", action="store_true", help="sort into the home folder (~/Pictures, ~/Documents, ...) instead of folders inside FOLDER")
     a = sub.add_parser("apply")
     a.add_argument("plan")
     a.add_argument("--only", help="comma list of groups: sort,duplicates,junk,installers")
@@ -240,8 +281,8 @@ def main():
         folder = Path(args.folder).expanduser()
         if not folder.is_dir():
             sys.exit(f"Not a folder: {folder}")
-        plan = scan(folder, args.old_days, args.big_mb, args.top_only, args.deep_duplicates)
-        out = Path(args.out) if args.out else folder / "_tidy" / "plan.json"
+        plan = scan(folder, args.old_days, args.big_mb, args.top_only, args.deep_duplicates, args.to_home)
+        out = Path(args.out) if args.out else tidy_dir(folder.resolve(), args.to_home) / "plan.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(plan, indent=1))
         report = {k: v for k, v in plan.items() if k not in ("actions", "duplicates")}

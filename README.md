@@ -6,7 +6,7 @@ Plugins that help Claude with personal admin. Nothing here sends email, deletes 
 |---|---|---|
 | **life-admin** | anyone | Inbox zero, safe file cleanup, a markdown second brain (works with Obsidian), a weekly reset, and a guided "set me up". |
 | **proton-mail** | Proton Mail users on a Mac | Lets Claude work in a Proton inbox through Proton Mail Bridge. Drafts only; never sends or permanently deletes. |
-| **dallas-os** | Dallas only | Points the above at Dallas's vault, mail, dallaspeters.com and Stripe. |
+| **dallas-os** | Dallas only | Points the above at Dallas's Almanac Desk notes and tasks, mail, dallaspeters.com and Stripe. |
 
 **New here? Start with [SETUP.md](SETUP.md).**
 

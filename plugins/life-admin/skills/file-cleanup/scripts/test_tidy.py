@@ -75,8 +75,19 @@ class TidyTest(unittest.TestCase):
         m = self.moves()
         self.assertEqual(m["a (1).txt"][0], "duplicates")
         self.assertEqual(m["a.txt"][0], "sort")
-        self.assertEqual(m["Clients/brief copy.md"][0], "duplicates")
+        # Copies inside folders are left alone unless --deep-duplicates.
+        self.assertNotIn("Clients/brief copy.md", m)
         self.assertNotIn("Clients/acme/brief.md", m)
+
+    def test_deep_duplicates_flag(self):
+        run("scan", self.root, "--deep-duplicates")
+        plan = json.loads((self.root / "_tidy" / "plan.json").read_text())
+        m = {a["from"]: a["group"] for a in plan["actions"]}
+        self.assertEqual(m["Clients/brief copy.md"], "duplicates")
+
+    def test_keeps_localized(self):
+        (self.root / ".localized").write_text("")
+        self.assertNotIn(".localized", self.moves())
 
     def test_groups(self):
         m = self.moves()

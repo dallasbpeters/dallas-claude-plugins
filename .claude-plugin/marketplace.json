@@ -9,7 +9,7 @@
       "name": "life-admin",
       "source": "./plugins/life-admin",
       "description": "Inbox zero, safe file cleanup, a plain-markdown second brain, a weekly reset, and a guided setup. Works with whatever email, calendar and folders you connect.",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "category": "productivity"
     },
     {

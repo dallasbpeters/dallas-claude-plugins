@@ -15,7 +15,7 @@ The work is done by `${CLAUDE_PLUGIN_ROOT}/skills/file-cleanup/scripts/tidy.py` 
 python3 "${CLAUDE_PLUGIN_ROOT}/skills/file-cleanup/scripts/tidy.py" scan "<folder>"
 ```
 
-Options: `--top-only` (just the loose files, not subfolders; good for Desktop), `--old-days 180`, `--big-mb 200`.
+Options: `--top-only` (just the loose files, not subfolders; good for Desktop), `--deep-duplicates` (also flag copies inside subfolders; off by default because pulling files out of a font kit or site export breaks it), `--old-days 180`, `--big-mb 200`.
 
 The scan writes the full plan to `<folder>/_tidy/plan.json` and prints a summary. Report it in plain words, for example:
 

@@ -37,6 +37,7 @@ KINDS = {
 }
 INSTALLERS = {".dmg", ".pkg", ".exe", ".msi", ".appimage", ".deb", ".rpm"}
 JUNK_NAMES = {".ds_store", "thumbs.db", "desktop.ini"}
+KEEP_NAMES = {".localized"}  # macOS uses it to name the folder; leave it
 PARTIALS = {".crdownload", ".part", ".download", ".tmp"}
 SCREENSHOT_PREFIXES = ("screenshot", "screen shot", "cleanshot", "capture")
 SKIP_DIRS = {"_tidy", "_to_delete", ".git", "node_modules", ".Trash"}
@@ -87,7 +88,7 @@ def walk(root, top_only):
             yield Path(dirpath) / name
 
 
-def scan(root, old_days, big_mb, top_only):
+def scan(root, old_days, big_mb, top_only, deep_duplicates=False):
     root = root.resolve()
     now = time.time()
     files = []
@@ -125,7 +126,13 @@ def scan(root, old_days, big_mb, top_only):
         name = rel.name.lower()
         age_days = (now - f["mtime"]) / 86400
         reason = None
-        if rel.as_posix() in dup_extra or f["path"] in dup_extra:
+        nested = len(rel.parts) > 1
+        if name in KEEP_NAMES:
+            continue
+        # A copy inside a folder is usually part of a kit (fonts, a site, an
+        # export) that breaks if pieces are pulled out, so only loose copies
+        # are flagged unless asked.
+        if (f["path"] in dup_extra) and (deep_duplicates or not nested):
             reason = "duplicates"
         elif name in JUNK_NAMES or rel.suffix.lower() in PARTIALS or f["size"] == 0:
             reason = "junk"
@@ -221,6 +228,7 @@ def main():
     s.add_argument("--old-days", type=int, default=180)
     s.add_argument("--big-mb", type=int, default=200)
     s.add_argument("--top-only", action="store_true", help="only look at files directly in the folder")
+    s.add_argument("--deep-duplicates", action="store_true", help="also flag duplicate copies inside subfolders")
     a = sub.add_parser("apply")
     a.add_argument("plan")
     a.add_argument("--only", help="comma list of groups: sort,duplicates,junk,installers")
@@ -232,7 +240,7 @@ def main():
         folder = Path(args.folder).expanduser()
         if not folder.is_dir():
             sys.exit(f"Not a folder: {folder}")
-        plan = scan(folder, args.old_days, args.big_mb, args.top_only)
+        plan = scan(folder, args.old_days, args.big_mb, args.top_only, args.deep_duplicates)
         out = Path(args.out) if args.out else folder / "_tidy" / "plan.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(plan, indent=1))

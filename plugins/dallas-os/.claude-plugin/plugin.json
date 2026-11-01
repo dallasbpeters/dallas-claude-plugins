@@ -1,7 +1,7 @@
 {
   "name": "dallas-os",
-  "version": "0.4.2",
-  "description": "Dallas's own setup (not for general use): wires life-admin to Almanac Desk notes and tasks, Proton and Gmail, the dallaspeters.com connector, and Stripe.",
+  "version": "0.4.3",
+  "description": "Dallas's own setup (not for general use): wires life-admin to Almanac Desk notes and tasks, Proton and Gmail, the dallaspeters.com connector, Stripe, and his bank accounts through cashflow.",
   "author": {
     "name": "Dallas Peters"
   },

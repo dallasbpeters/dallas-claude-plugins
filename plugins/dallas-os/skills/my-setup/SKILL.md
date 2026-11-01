@@ -1,6 +1,6 @@
 ---
 name: my-setup
-description: Dallas's personal setup, which tells the life-admin skills where his things live: Almanac Desk (all notes and tasks), Proton Mail and Gmail, the dallaspeters.com site connector, Stripe, and his projects folder. Use whenever Dallas asks about his notes, vault, tasks, clients, proposals, invoices, agreements, payments, email, files, or says "weekly reset", "file my inbox", "what do I know about…", "catch me up".
+description: Dallas's personal setup, which tells the life-admin skills where his things live: Almanac Desk (all notes and tasks), Proton Mail and Gmail, the dallaspeters.com site connector, Stripe, his bank accounts (cashflow/Plaid), and his projects folder. Use whenever Dallas asks about his notes, vault, tasks, clients, proposals, invoices, agreements, payments, money, subscriptions, email, files, or says "weekly reset", "file my inbox", "what do I know about…", "catch me up".
 ---
 
 # Where Dallas's things live
@@ -32,6 +32,14 @@ Almanac Desk is the one home for Dallas's notes and tasks, work and personal. It
 - Stripe is connected as a Claude connector. Use it to read customers, invoices, payments and balances, for example "who still owes me?" or "what came in this month?".
 - Create or send invoices through the site (above), not directly in Stripe, so they stay tied to proposals and agreements. Never refund, cancel or change anything in Stripe without an explicit yes for that specific item.
 
+## Money: cashflow (Plaid)
+- Bank and card accounts come through the **cashflow** plugin, which links them with Plaid. If its tools are missing, it isn't signed in yet. If no accounts show up, run `cashflow:setup`.
+- "Money review" runs life-admin's `money-review`. Read billing mail from **both** Gmail and Proton.
+- Keep three buckets apart: **business** (dallaspeters.com, Stripe payouts, client and design tools such as Adobe, Figma, Framer, Vercel, Anthropic and other AI/API services), **rental** (7800 Back Acres Rd: Avail, Hemlane, repairs, mortgage and insurance for it), and **personal**. Business tools aren't cancel candidates just because they're used rarely; ask instead.
+- Income: client money arrives through Stripe; check it there (read-only) rather than guessing from deposits.
+- Save the review in Almanac Desk as `memory/notes/money.md` (group: Personal; create the group if needed). Update that note on each run, and add each proposed action as an `almanac-tasks` task (`--quadrant` by urgency) and close them as they're done.
+- Never pay, cancel, transfer or change anything, in cashflow, Stripe or any bank. Proposals and draft emails only.
+
 ## Email
 - **Proton** (dallas@dallaspeters.com) through the proton-mail plugin or connector; Bridge must be running. **Gmail** through the Gmail connector.
 - The **morning inbox sweep** is already a scheduled task; don't create another.
@@ -41,7 +49,7 @@ Almanac Desk is the one home for Dallas's notes and tasks, work and personal. It
 When something changes on a client (proposal accepted, agreement signed, invoice paid, an important email), add a dated line to that client's note in `memory/notes/`, and add or close the matching task with `almanac-tasks`.
 
 ## Weekly reset additions
-Also run `site_overview` and `recent_activity`. Under "Waiting on", list unpaid invoices (site + Stripe) and unsigned agreements.
+Also run `site_overview` and `recent_activity`. Under "Waiting on", list unpaid invoices (site + Stripe) and unsigned agreements. Add a two-line money check from `memory/notes/money.md`: open fires and anything due this week.
 
 ## Where Claude saves files
 - Home folder: `~/Documents/Claude` (iCloud-backed), laid out as `<YYYY-MM>/<project>/`. The life-admin `claude-files` skill has the rules; follow it for every file Claude writes on this Mac.

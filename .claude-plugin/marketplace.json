@@ -4,14 +4,14 @@
     "name": "Dallas Peters"
   },
   "metadata": {
-    "description": "Claude plugins by Dallas Peters for personal admin: email, files, notes and weekly planning."
+    "description": "Claude plugins by Dallas Peters for personal admin: email, files, notes, money and weekly planning."
   },
   "plugins": [
     {
       "name": "life-admin",
       "source": "./plugins/life-admin",
-      "description": "Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, a guided setup, and one home for Claude's files with a monthly sweep. Works with whatever email, calendar and folders you connect.",
-      "version": "0.4.0",
+      "description": "Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, a guided setup, a money review (subscriptions, past-due bills, what to cancel), and one home for Claude's files with a monthly sweep. Works with whatever email, calendar, folders and finance connector you connect.",
+      "version": "0.5.0",
       "category": "productivity"
     },
     {
@@ -24,8 +24,8 @@
     {
       "name": "dallas-os",
       "source": "./plugins/dallas-os",
-      "description": "Dallas's personal wiring (Almanac Desk notes and tasks, mail, dallaspeters.com, Stripe). Not useful to anyone else.",
-      "version": "0.4.2",
+      "description": "Dallas's personal wiring (Almanac Desk notes and tasks, mail, dallaspeters.com, Stripe, bank accounts via cashflow). Not useful to anyone else.",
+      "version": "0.4.3",
       "category": "productivity"
     }
   ]

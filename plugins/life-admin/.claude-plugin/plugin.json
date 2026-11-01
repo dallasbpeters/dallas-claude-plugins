@@ -1,7 +1,7 @@
 {
   "name": "life-admin",
-  "version": "0.4.0",
-  "description": "Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, and one home for Claude's files. Works with whatever email, calendar and folders you connect.",
+  "version": "0.5.0",
+  "description": "Inbox zero, safe file cleanup, a second brain in Almanac Desk (or plain markdown), a weekly reset, a money review (subscriptions, past-due bills, what to cancel), and one home for Claude's files. Works with whatever email, calendar, folders and finance connector you connect.",
   "author": {
     "name": "Dallas Peters"
   },
@@ -14,7 +14,10 @@
     "tasks",
     "weekly review",
     "almanac",
-    "obsidian"
+    "obsidian",
+    "money",
+    "subscriptions",
+    "budget"
   ],
   "icon": "./logo.png",
   "homepage": "https://github.com/dallasbpeters/dallas-claude-plugins"

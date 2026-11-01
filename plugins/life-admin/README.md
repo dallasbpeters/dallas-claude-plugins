@@ -1,0 +1,18 @@
+# Life admin
+
+Four helpers for keeping personal admin under control in Claude:
+
+| Ask Claude… | What happens |
+|---|---|
+| "Clean up my email" | Groups mail by sender, archives the noise in bulk, stars what needs you, drafts easy replies, suggests unsubscribes. **Never sends or permanently deletes.** |
+| "Clean up my Downloads" | Scans the folder, shows a plan (sort by type, duplicates, old installers, junk), and moves only what you approve. **Never deletes:** extras go to a `_to_delete` folder you empty yourself, and every run can be undone. |
+| "Save this to my notes" / "What do I know about X?" | Keeps one folder of markdown notes (works with Obsidian) for projects, people, tasks and a daily journal. |
+| "Weekly reset" | Email, calendar, tasks, notes and files in one sweep, ending with your top 3 for the week. |
+
+## Setup
+1. Install this plugin.
+2. Connect your email (Gmail or Outlook) and calendar under Connectors.
+3. Connect the folders you want help with (Downloads, Desktop, and a notes folder, such as an Obsidian vault) from the desktop app.
+4. Try: "Clean up my email" or "Clean up my Downloads".
+
+The file cleanup needs Python 3 (already on macOS; on Windows, install it from python.org or the Microsoft Store).

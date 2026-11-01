@@ -1,0 +1,30 @@
+{
+  "name": "dallas-claude-plugins",
+  "owner": { "name": "Dallas Peters" },
+  "metadata": {
+    "description": "Claude plugins by Dallas Peters for personal admin: email, files, notes and weekly planning."
+  },
+  "plugins": [
+    {
+      "name": "life-admin",
+      "source": "./plugins/life-admin",
+      "description": "Inbox zero, safe file cleanup, a plain-markdown second brain, a weekly reset, and a guided setup. Works with whatever email, calendar and folders you connect.",
+      "version": "0.2.0",
+      "category": "productivity"
+    },
+    {
+      "name": "proton-mail",
+      "source": "./plugins/proton-mail",
+      "description": "Proton Mail through Proton Mail Bridge on a Mac: search, read, archive, label, unsubscribe and draft. Never sends, never permanently deletes.",
+      "version": "0.1.0",
+      "category": "productivity"
+    },
+    {
+      "name": "dallas-os",
+      "source": "./plugins/dallas-os",
+      "description": "Dallas's personal wiring (vault, mail, dallaspeters.com, Stripe). Not useful to anyone else.",
+      "version": "0.2.0",
+      "category": "productivity"
+    }
+  ]
+}

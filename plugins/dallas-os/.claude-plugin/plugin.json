@@ -1,0 +1,6 @@
+{
+  "name": "dallas-os",
+  "version": "0.2.0",
+  "description": "Dallas's own setup (not for general use): wires life-admin to his iCloud Obsidian vault, Proton and Gmail, the dallaspeters.com connector, and Stripe.",
+  "author": { "name": "Dallas Peters" }
+}

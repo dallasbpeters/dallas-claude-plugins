@@ -1,0 +1,7 @@
+{
+  "name": "life-admin",
+  "version": "0.2.0",
+  "description": "Inbox zero, safe file cleanup, a plain-markdown second brain, and a weekly reset. Works with whatever email, calendar and folders you connect.",
+  "author": { "name": "Dallas Peters" },
+  "keywords": ["email", "inbox zero", "files", "cleanup", "notes", "obsidian", "tasks", "weekly review"]
+}

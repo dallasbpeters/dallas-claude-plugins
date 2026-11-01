@@ -1,0 +1,17 @@
+{
+  "name": "proton-mail-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Proton Mail (via Bridge) for Claude: search, read, move, label, flag and draft. Never sends, never permanently deletes.",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "imapflow": "^2.10.0",
+    "mailparser": "^3.14.1",
+    "zod": "^4.6.7"
+  }
+}

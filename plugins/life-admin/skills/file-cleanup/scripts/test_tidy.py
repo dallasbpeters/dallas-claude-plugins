@@ -203,3 +203,30 @@ class ToHomeTest(unittest.TestCase):
         out = subprocess.run([sys.executable, str(TIDY), "scan", self.home, "--to-home"], capture_output=True, text=True, env=self.env)
         self.assertNotEqual(out.returncode, 0)
 
+    def test_empties_folders_an_earlier_run_made(self):
+        r = self.root
+        (r / "Images" / "2025").mkdir(parents=True)
+        (r / "Images" / "2025" / "old.png").write_text("old img")
+        (r / "Screenshots" / "2026").mkdir(parents=True)
+        (r / "Screenshots" / "2026" / "Screenshot 2026-02-02.png").write_text("shot2")
+        (r / "_to_delete" / "junk").mkdir(parents=True)
+        (r / "_to_delete" / "junk" / "x.tmp").write_text("t")
+        (r / "_tidy").mkdir()
+        (r / "_tidy" / "undo-old.json").write_text("{}")
+        self.tidy("scan", r, "--to-home", "--top-only")
+        plan_path = self.home / ".tidy" / "Downloads" / "plan.json"
+        to = {a["from"]: a["to"] for a in json.loads(plan_path.read_text())["actions"]}
+        self.assertEqual(to["Images/2025/old.png"], str(self.home / "Pictures" / "old.png"))
+        self.assertEqual(to["Screenshots/2026/Screenshot 2026-02-02.png"], str(self.home / "Screenshots" / "2026" / "Screenshot 2026-02-02.png"))
+        self.assertEqual(to["_to_delete/junk/x.tmp"], str(self.home / "_to_delete" / "junk" / "x.tmp"))
+        self.assertNotIn("Clients/brief.md", to)
+
+        result = json.loads(self.tidy("apply", plan_path))
+        self.assertEqual(sorted(p.name for p in r.iterdir()), ["Clients"])
+        self.assertTrue((self.home / "_to_delete" / "empty-folders" / "Downloads-Images").is_dir())
+        self.assertTrue((self.home / ".tidy" / "Downloads" / "previous" / "undo-old.json").exists())
+
+        self.tidy("undo", result["undo_log"])
+        self.assertEqual((r / "Images" / "2025" / "old.png").read_text(), "old img")
+        self.assertEqual((r / "_tidy" / "undo-old.json").read_text(), "{}")
+

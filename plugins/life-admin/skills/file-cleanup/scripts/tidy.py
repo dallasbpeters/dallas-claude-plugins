@@ -64,6 +64,12 @@ def tidy_dir(root, to_home):
     return Path(root) / "_tidy"
 
 
+def prior_folder(rel, to_home):
+    """With --to-home, a folder an earlier in-place run made (Images, Documents,
+    _to_delete, ...) is emptied into the home folder too, not left behind."""
+    return to_home and len(rel.parts) > 1 and (rel.parts[0] in SORTED_DIRS or rel.parts[0] == "_to_delete")
+
+
 def rel_or_abs(path, root):
     try:
         return str(path.relative_to(root))
@@ -122,8 +128,16 @@ def scan(root, old_days, big_mb, top_only, deep_duplicates=False, to_home=False)
         sys.exit("--to-home sorts a folder into your home folder; it can't sort the home folder itself")
     trash = (home / "_to_delete") if to_home else Path("_to_delete")
     now = time.time()
+    paths = list(walk(root, top_only))
+    if to_home:
+        # walk() skips _to_delete and, with --top-only, every subfolder; pick up
+        # the folders an earlier in-place run made so they get emptied too.
+        seen = set(paths)
+        for d in sorted(SORTED_DIRS | {"_to_delete"}):
+            if (root / d).is_dir():
+                paths += [q for q in (root / d).rglob("*") if q.is_file() and q not in seen]
     files = []
-    for p in walk(root, top_only):
+    for p in paths:
         try:
             st = p.stat()
         except OSError:
@@ -157,12 +171,18 @@ def scan(root, old_days, big_mb, top_only, deep_duplicates=False, to_home=False)
         name = rel.name.lower()
         age_days = (now - f["mtime"]) / 86400
         reason = None
-        nested = len(rel.parts) > 1
+        prior = prior_folder(rel, to_home)
+        nested = len(rel.parts) > 1 and not prior
         if name in KEEP_NAMES:
             continue
         # A copy inside a folder is usually part of a kit (fonts, a site, an
         # export) that breaks if pieces are pulled out, so only loose copies
         # are flagged unless asked.
+        if prior and rel.parts[0] == "_to_delete":
+            # Already set aside by an earlier run: keep it set aside, in ~/_to_delete.
+            group = rel.parts[1] if len(rel.parts) > 2 and rel.parts[1] in ("duplicates", "junk", "installers") else "junk"
+            actions.append({"from": f["path"], "to": str(home / rel), "group": group, "size": f["size"]})
+            continue
         if (f["path"] in dup_extra) and (deep_duplicates or not nested):
             reason = "duplicates"
         elif name in JUNK_NAMES or rel.suffix.lower() in PARTIALS or f["size"] == 0:
@@ -170,10 +190,10 @@ def scan(root, old_days, big_mb, top_only, deep_duplicates=False, to_home=False)
         elif rel.suffix.lower() in INSTALLERS and age_days > 14:
             reason = "installers"
         if reason:
-            actions.append({"from": f["path"], "to": str(trash / reason / rel), "group": reason, "size": f["size"]})
+            actions.append({"from": f["path"], "to": str(trash / reason / (Path(rel.name) if prior else rel)), "group": reason, "size": f["size"]})
             continue
         # Sort only loose files at the top level; existing subfolders are the person's own system.
-        if len(rel.parts) == 1:
+        if len(rel.parts) == 1 or prior:
             kind = kind_of(rel)
             year = datetime.fromtimestamp(f["mtime"]).strftime("%Y")
             if to_home:
@@ -210,6 +230,17 @@ def scan(root, old_days, big_mb, top_only, deep_duplicates=False, to_home=False)
     }
 
 
+def cloud_only(path):
+    """A file a sync app (iCloud Desktop & Documents, Dropbox, OneDrive) has
+    offloaded: it reports its full size but holds no data on disk until it's
+    downloaded, and moving it fails part-way."""
+    try:
+        st = path.stat()
+    except OSError:
+        return False
+    return st.st_size > 0 and getattr(st, "st_blocks", 1) == 0
+
+
 def unique(dest):
     if not dest.exists():
         return dest
@@ -228,7 +259,7 @@ def apply(plan_path, only):
     log_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     log_path = log_dir / f"undo-{stamp}.json"
-    moved, skipped = [], 0
+    moved, skipped, failed = [], 0, []
     for a in plan["actions"]:
         if only and a["group"] not in only:
             continue
@@ -236,13 +267,46 @@ def apply(plan_path, only):
         if not src.exists():
             skipped += 1
             continue
+        if cloud_only(src):
+            failed.append({"file": a["from"], "why": "cloud-only: download it first"})
+            continue
         dest = unique(root / a["to"])  # an absolute "to" (--to-home) replaces root
         dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.move(str(src), str(dest))
+        try:
+            shutil.move(str(src), str(dest))
+        except OSError as e:
+            # A failed copy can leave a partial file at dest; the original is untouched.
+            if src.exists() and dest.exists():
+                try:
+                    dest.unlink()
+                except OSError:
+                    pass
+            failed.append({"file": a["from"], "why": e.strerror or str(e)})
+            continue
         moved.append({"from": str(src.relative_to(root)), "to": rel_or_abs(dest, root)})
         # Written as we go, so an interrupted run can still be undone.
         log_path.write_text(json.dumps({"root": str(root), "moves": moved}, indent=1))
-    print(json.dumps({"moved": len(moved), "skipped_missing": skipped, "undo_log": str(log_path) if moved else None}))
+    if plan.get("to_home"):
+        # Folders an earlier in-place run made are now empty. Nothing is deleted:
+        # they and the old _tidy logs go to ~/_to_delete and ~/.tidy.
+        home = Path.home()
+        for d in sorted(SORTED_DIRS | {"_to_delete", "_tidy"}):
+            folder = root / d
+            if not folder.is_dir():
+                continue
+            if failed or (d != "_tidy" and any(q.is_file() and q.name != ".DS_Store" for q in folder.rglob("*"))):
+                continue
+            target = (log_dir / "previous") if d == "_tidy" else (home / "_to_delete" / "empty-folders" / f"{root.name}-{d}")
+            target = unique(target)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(folder), str(target))
+            moved.append({"from": d, "to": str(target)})
+            log_path.write_text(json.dumps({"root": str(root), "moves": moved}, indent=1))
+    out = {"moved": len(moved), "skipped_missing": skipped, "undo_log": str(log_path) if moved else None}
+    if failed:
+        out["not_moved"] = len(failed)
+        out["not_moved_examples"] = failed[:10]
+    print(json.dumps(out))
 
 
 def undo(log_path):

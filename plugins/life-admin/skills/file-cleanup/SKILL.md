@@ -69,3 +69,4 @@ python3 "${CLAUDE_PLUGIN_ROOT}/skills/file-cleanup/scripts/tidy.py" undo "<folde
 - Don't touch app bundles, photo libraries, `.git` or `node_modules` (the script skips them).
 - Scan a big folder (home, Documents) only when asked, and say it may take a few minutes.
 - For files on cloud drives (iCloud, Dropbox, OneDrive) that may not be downloaded, mention that scanning reads them and may download them.
+- Cloud-only files (iCloud Desktop & Documents with Optimize Storage, Dropbox, OneDrive) can't be moved until they're downloaded. `apply` skips them and reports them under `not_moved`; tell the person to download them (Finder: select them, right-click, **Download Now**) and run `apply` again on the same plan. Already-moved files are skipped as missing, so a rerun is safe.

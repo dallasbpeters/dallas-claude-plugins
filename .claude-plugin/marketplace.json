@@ -25,7 +25,7 @@
       "name": "dallas-os",
       "source": "./plugins/dallas-os",
       "description": "Dallas's personal wiring (Almanac Desk notes and tasks, mail, dallaspeters.com, Stripe). Not useful to anyone else.",
-      "version": "0.4.1",
+      "version": "0.4.2",
       "category": "productivity"
     }
   ]

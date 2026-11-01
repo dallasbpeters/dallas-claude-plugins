@@ -16,10 +16,10 @@ Almanac Desk is the one home for Dallas's notes and tasks, work and personal. It
 - **Notes panel blocks** are plain Markdown: callouts (`> [!note]`, `> [!important]`), questions for Dallas as `> [!question]` callouts with options as bullets, and long context inside `> [!toggle]-`.
 - **Rituals** are Almanac's own skills (`/plan-day`, `/almanac-daily-review`, weekly planning, `/fifteen-five`). For a "weekly reset", run life-admin's `weekly-reset`, but take the tasks from `almanac-tasks list` and save the plan into the day's note.
 - **Work vs. personal:** both live here now. RoleModel work stays in its groups; client and personal notes get their own groups. Never put RoleModel-confidential details into a freelance client note, or into a site brand kit.
-- **Into brand kits:** when Dallas asks to pull a client's history into its brand kit references on the site, read the client's Almanac notes and meetings, and use the note path as each reference's source.
+- **Into brand kits:** when Dallas asks to pull a client's history into its brand kit, read the client's Almanac notes and meetings, pick out decisions, feedback and preferences (not chatter), and file each with `add_brand_reference`: a short title, the date it happened, and the note path as the source (`Almanac: notes/bird-creek.md`). Show him the list before adding more than a handful. RoleModel-confidential details never go into a brand kit.
 
 ## Business: dallaspeters.com
-- **Photos connector** (custom connector in Claude): `site_overview`, `list_proposals`, `get_proposal`, `get_agreement`, `list_invoices`, `draft_invoice`, `list_reviews`, `recent_activity`, `search_photos`.
+- **Photos connector** (custom connector in Claude): `site_overview`, `list_proposals`, `get_proposal`, `get_agreement`, `list_invoices`, `draft_invoice`, `list_reviews`, `recent_activity`, `search_photos`, and for brands `list_brand_kits`, `get_brand_kit`, `add_brand_reference`, `remove_brand_reference`.
 - If those tools are missing, it isn't connected yet. Setup, once:
   1. Terminal: `openssl rand -hex 32`, then copy the result.
   2. Vercel → photo-portfolio → Settings → Environment Variables: add `MCP_ACCESS_TOKEN` (Production) with that value, then redeploy.

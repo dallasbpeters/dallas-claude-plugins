@@ -35,5 +35,11 @@ When something changes on a client (proposal accepted, agreement signed, invoice
 ## Weekly reset additions
 Also run `site_overview` and `recent_activity`. Under "Waiting on", list unpaid invoices (site + Stripe) and unsigned agreements.
 
+## Where Claude saves files
+- Home folder: `~/Documents/Claude` (iCloud-backed), laid out as `<YYYY-MM>/<project>/`. The life-admin `claude-files` skill has the rules; follow it for every file Claude writes on this Mac.
+- Exceptions: code and plugin files go in their repo under `~/Development/<repo>`; Framer components go in the connected framer-components project folder.
+- Never write to the Desktop, Downloads or `~/Claude` (that one belongs to the Claude app).
+- A monthly Claude sweep runs as a scheduled task; don't create another.
+
 ## Files
 - Projects: `~/Development`. Cleanup candidates: Downloads, Desktop, `~/Screenshots`. Use life-admin `file-cleanup`.

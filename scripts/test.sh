@@ -15,8 +15,9 @@ for p in plugins/*/; do
   done
 done
 
-echo "→ file-cleanup tests"
+echo "→ file-cleanup and claude-files tests"
 python3 -m unittest discover -s plugins/life-admin/skills/file-cleanup/scripts -q
+python3 -m unittest discover -s plugins/life-admin/skills/claude-files/scripts -p "test_*.py" -q
 
 echo "→ proton-mail connector"
 reply=$( (printf '%s\n' \

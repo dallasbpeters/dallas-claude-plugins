@@ -1,6 +1,8 @@
 {
   "name": "dallas-claude-plugins",
-  "owner": { "name": "Dallas Peters" },
+  "owner": {
+    "name": "Dallas Peters"
+  },
   "metadata": {
     "description": "Claude plugins by Dallas Peters for personal admin: email, files, notes and weekly planning."
   },
@@ -8,8 +10,8 @@
     {
       "name": "life-admin",
       "source": "./plugins/life-admin",
-      "description": "Inbox zero, safe file cleanup, a plain-markdown second brain, a weekly reset, and a guided setup. Works with whatever email, calendar and folders you connect.",
-      "version": "0.2.1",
+      "description": "Inbox zero, safe file cleanup, a plain-markdown second brain, a weekly reset, a guided setup, and one home for Claude's files with a monthly sweep. Works with whatever email, calendar and folders you connect.",
+      "version": "0.3.0",
       "category": "productivity"
     },
     {
@@ -23,7 +25,7 @@
       "name": "dallas-os",
       "source": "./plugins/dallas-os",
       "description": "Dallas's personal wiring (vault, mail, dallaspeters.com, Stripe). Not useful to anyone else.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "productivity"
     }
   ]

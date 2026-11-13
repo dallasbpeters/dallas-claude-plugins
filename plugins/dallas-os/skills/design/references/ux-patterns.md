@@ -1,0 +1,24 @@
+# UX patterns
+
+- Edit and change settings on the page, with details in view. A modal is not the main editing surface.
+- Use breadcrumbs from the section root, not ad-hoc Back buttons. Label each link with where it goes.
+- Prefer a real interactive UI (block editor, kanban, quadrants) over raw markdown editing.
+- Prefer a UI with preview and direct editing over terminal commands for design tools.
+- Make photo lightboxes large. Let people move through the whole collection with arrows, keys, and swipe, with a position indicator.
+- Give AI features a disclaimer, an AI-generated label, and feedback on each response.
+- Walk people through a multi-section flow with a stepper. After completion, show all sections as accordions, one open at a time.
+- Always design and check the empty state. Tell "nothing yet" apart from "no matches", and give each one a way out.
+- Show a control only where it applies. Leave empty areas blank, with one action to add content.
+- Make resizable or draggable UI obvious, with a visible handle.
+- Do not rely on right-click. Give panels a visible toolbar.
+- Wait for data before showing UI that depends on it, then fade it in.
+- Keep critical mobile actions in view, layered over the content.
+- Open contextual tools (like AI chat) where the user triggered them.
+- Move low-priority helpers (tour, help) to the footer or settings.
+- Do not ask people for values the system can compute.
+- Replace unworkable inputs (comma lists for data) with visual editors, plus CSV or JSON paste.
+- Keep finished work visible, grouped by day.
+- Batch pending actions into a count, with one send button that says what happens next.
+- Make intake forms feel like Typeform, with a live readout of results.
+- Show changes for review as git-style diffs, not a table.
+- Use rich generative UI in AI chat responses, with varied components.

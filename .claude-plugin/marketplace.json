@@ -24,8 +24,8 @@
     {
       "name": "dallas-os",
       "source": "./plugins/dallas-os",
-      "description": "Dallas's personal wiring (Almanac Desk notes and tasks, mail, dallaspeters.com, Stripe, bank accounts via cashflow). Not useful to anyone else.",
-      "version": "0.4.3",
+      "description": "Dallas's personal wiring (Almanac Desk notes and tasks, mail, dallaspeters.com, Stripe, bank accounts via cashflow), his design rules skill, updated nightly from his Claude sessions, and a system monitor that cleans up leftover dev processes and unused git worktrees.",
+      "version": "0.5.0",
       "category": "productivity"
     }
   ]

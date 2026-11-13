@@ -299,7 +299,13 @@ def apply(plan_path, only):
             target = (log_dir / "previous") if d == "_tidy" else (home / "_to_delete" / "empty-folders" / f"{root.name}-{d}")
             target = unique(target)
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.move(str(folder), str(target))
+            try:
+                # Rename only: a copy-then-delete fallback can leave two copies
+                # (or half of one) when the folder is cloud-synced.
+                os.rename(folder, target)
+            except OSError as e:
+                failed.append({"file": d + "/", "why": e.strerror or str(e)})
+                continue
             moved.append({"from": d, "to": str(target)})
             log_path.write_text(json.dumps({"root": str(root), "moves": moved}, indent=1))
     out = {"moved": len(moved), "skipped_missing": skipped, "undo_log": str(log_path) if moved else None}

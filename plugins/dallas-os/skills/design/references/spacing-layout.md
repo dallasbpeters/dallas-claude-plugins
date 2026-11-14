@@ -13,3 +13,6 @@
 - Fold secondary metadata (dates, IDs) into a hover popover.
 - Place small widgets in a consistent multi-up grid. Avoid awkward gaps.
 - Wrap the sidebar and main content in a bordered, rounded container, so the app floats on the page.
+- Place page actions to the right of the filter and columns controls. (Actions beside the filters keep the toolbar in one row.)
+- Keep grids at full width of their container. (Grids that stop short of the container look broken.)
+- Fill grid rows so no awkward empty gap remains. Pair cards in grids such as 4-up layouts with related content. (A large gap next to a small card looked broken.)

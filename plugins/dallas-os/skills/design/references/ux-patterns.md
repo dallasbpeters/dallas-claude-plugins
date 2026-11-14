@@ -22,3 +22,16 @@
 - Make intake forms feel like Typeform, with a live readout of results.
 - Show changes for review as git-style diffs, not a table.
 - Use rich generative UI in AI chat responses, with varied components.
+- Validate form fields inline, without refreshing the whole page. (A full page refresh on error makes the user re-enter or re-select every field.)
+- Give data tables text size, filter, and column controls. (Users need to adjust density, narrow rows, and choose visible columns.)
+- Use a navbar dropdown, not tabs, to switch between top-level views.
+- Do not repeat information that is already shown on the screen. (Repeated text adds clutter without adding value.)
+- Show the standard empty state when a list has no items. (One empty state keeps the product consistent.)
+- Create new records inline at the top of their list, not in a modal. (Inline creation keeps the user in context.)
+- Autofocus the name field of a new record and save the record when the field loses focus. (Users can type right away and need no separate save step.)
+- Edit records in place instead of opening a modal. (In-place editing is faster and keeps context.)
+- Make ask or search bars suggest context the user needs now, such as upcoming items or client facts. (Generic prompts do not help the user act.)
+- Use generative UI in AI responses. Render charts and cards inline from the response. (Dallas wants more than one chart type in AI chat. He pointed to the AI SDK generative UI docs.)
+- Check other pages for key stats before adding them to a dashboard. Do not repeat stats already shown. (Repeated stats waste space and the dashboard should show new information.)
+- Show a visible grip or handle on resizable panels so users know they can resize. (Users did not see that the toolbar could be resized.)
+- Move removed optional controls into user settings with a toggle so users can turn them back on. (Some users prefer a control in its old place, so they need a way to restore it.)

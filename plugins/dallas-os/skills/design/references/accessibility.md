@@ -6,3 +6,4 @@
 - Make touch targets at least 44px. Use `pointer: coarse` to enlarge them, not width guesses.
 - Use `aria-current`, `aria-expanded`, `role=status`, and real headings.
 - Modals trap focus, close on Escape, and return focus to the trigger.
+- Use pointer media queries to enlarge controls and touch targets when the pointer is coarse. (Touch screens need larger targets than mouse pointers.)

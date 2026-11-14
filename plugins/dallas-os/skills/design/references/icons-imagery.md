@@ -8,3 +8,4 @@
 - Keep icon markup simple. No wrapper boxes; use a larger icon instead.
 - Update OG images and favicons whenever the logo changes.
 - Use real HTML text for wordmarks and labels, not text converted to shapes.
+- Use real client logos from Brandfetch. Do not use white logos on light backgrounds; use dark logo versions. (White logos were invisible on light cards.)

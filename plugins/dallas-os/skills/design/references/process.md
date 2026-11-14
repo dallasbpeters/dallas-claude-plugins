@@ -16,3 +16,8 @@
 - Make editable site content (banners, CTAs, colors, messages) controllable in the CMS, not hard-coded.
 - Keep a site map of every view and a checklist of what is not done yet (brand, leave-behinds, export).
 - Write PR descriptions as a short summary of the change's theme. No code and no test details.
+- Check the project's font sizes and font setup before building any new component. (So each new component is set up the same way.)
+- Consolidate shared styles into existing stylesheets instead of adding a new stylesheet for each feature. (Each new feature adding its own SCSS file causes overlap, duplicate CSS, and a growing stylesheet count.)
+- Standardize CSS class names across the app instead of letting each feature invent overly specific names. (Duplicate and overly specific names make styles hard to find and reuse.)
+- Add new features and tips to the docs page in the same change as the UI. (Docs must match the shipped product, so the docs update should ship with the feature.)
+- Expose design guidance as a slash command that takes a topic parameter, such as /design icons. (Dallas wants the design skill to work like Impeccable, with a command and parameters after it.)

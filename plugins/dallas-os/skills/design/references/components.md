@@ -28,3 +28,10 @@
 - Do not put icons inside inputs where they get in the way.
 - Use icon-only buttons on mobile when a label will not fit. Make search bars full width on small screens.
 - Color pickers use OKLCH, stay expanded, support gradients, and can be cleared.
+- Show a layout warning as an alert above the table, not as a card. (A notice about columns fits better as an alert over the data it describes.)
+- Keep undo toasts visible for at least 60 seconds and let users dismiss them. (Users need time to notice and undo an action.)
+- Show undo toasts in a dark style in the lower-right corner.
+- Remove small caption lines that sit above tab bars. (The extra line added clutter above the tabs.)
+- Style media entry buttons like video thumbnails. Use a linear gradient background, a play icon, and a short label such as "Play brief". (Dallas preferred this earlier thumbnail button over the plain video button.)
+- Place filters and search on the left of data grids and pagination on the right. (This is the layout Dallas wants for the events grid.)
+- Let navigation dropdown text use free space before it truncates. (The page title dropdown truncated on tablets even though the navbar had room.)

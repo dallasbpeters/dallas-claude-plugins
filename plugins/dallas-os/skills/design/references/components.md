@@ -35,3 +35,8 @@
 - Style media entry buttons like video thumbnails. Use a linear gradient background, a play icon, and a short label such as "Play brief". (Dallas preferred this earlier thumbnail button over the plain video button.)
 - Place filters and search on the left of data grids and pagination on the right. (This is the layout Dallas wants for the events grid.)
 - Let navigation dropdown text use free space before it truncates. (The page title dropdown truncated on tablets even though the navbar had room.)
+- Use the small form-control size for checkboxes so their labels stay small. (Checkbox label text was too large next to the section content.)
+- Show a finding count with its severity as one chip. (Severity and count are read together, so one chip keeps them clear.)
+- Use icon-only buttons at tablet width when the labels do not fit. (Text buttons did not fit in the header at tablet size.)
+- Put save and delete actions in the footer of a menu.
+- Cap menus at 600px wide. (Wide menus feel heavy.)

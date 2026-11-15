@@ -1,6 +1,6 @@
 {
   "name": "dallas-os",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Dallas's own setup (not for general use). Skills: my-setup (wires life-admin to Almanac Desk notes and tasks, Proton and Gmail, the dallaspeters.com connector, Stripe, and his bank accounts through cashflow), design (his design rules by category, learned from his Claude sessions and updated nightly), and system-monitor (finds what's slowing his Mac down and cleans up leftover dev processes and unused git worktrees).",
   "author": {
     "name": "Dallas Peters"

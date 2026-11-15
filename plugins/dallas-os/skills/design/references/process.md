@@ -21,3 +21,4 @@
 - Standardize CSS class names across the app instead of letting each feature invent overly specific names. (Duplicate and overly specific names make styles hard to find and reuse.)
 - Add new features and tips to the docs page in the same change as the UI. (Docs must match the shipped product, so the docs update should ship with the feature.)
 - Expose design guidance as a slash command that takes a topic parameter, such as /design icons. (Dallas wants the design skill to work like Impeccable, with a command and parameters after it.)
+- Run UX audits as Linear project templates, not as a checklist built into the app. (Linear already tracks the audit flow and pipeline, so the app does not need to duplicate it.)

@@ -12,3 +12,5 @@
 - Use plain labels a client would say, not AI-sounding phrases like 'Keep the new Answer'. (AI-sounding wording feels unnatural to partners.)
 - Name UI concepts by the action the user takes, not by a container word like 'Cards'. (Partners do not understand 'Cards'. An ask is an action.)
 - Keep header labels short so they never truncate. For example, use "AI Assistant". (A long header label was cut off on screen.)
+- Name chart options in plain words a client would use, not chart jargon. (Plain words make the choice easy to make.)
+- Use the metric name as the chart title and show the timeframe inside the chart. (Short titles stay clear, and the timeframe is still obvious.)

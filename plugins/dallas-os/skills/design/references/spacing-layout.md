@@ -16,3 +16,7 @@
 - Place page actions to the right of the filter and columns controls. (Actions beside the filters keep the toolbar in one row.)
 - Keep grids at full width of their container. (Grids that stop short of the container look broken.)
 - Fill grid rows so no awkward empty gap remains. Pair cards in grids such as 4-up layouts with related content. (A large gap next to a small card looked broken.)
+- Use the full page width for working screens, not a narrow centered column. (A narrow layout wasted space and pushed the sidebar away from the left edge.)
+- Give each card slot controls for direction, grid, padding, and gap. (Users need to lay out slot contents without custom styling.)
+- Give cards alignment controls for their slot content. (Users need to align content inside a card.)
+- Let slot items stretch to full width when the user chooses. (Items in a slot could not fill the slot width.)

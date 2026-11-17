@@ -14,3 +14,4 @@
 - Load custom fonts through the framework's font loader. Keep an alternate font commented out instead of shipping a font picker.
 - Keep helper and body text small so notices and card copy do not dominate the layout. (The text in the columns notice was too large.)
 - Set line-height tight so text centers evenly in buttons and labels. (Tall line-height pushed text off center.)
+- Let site owners pick fonts in Studio, and build the type scale from the brand. (Owners need to control their own type. This is for Studio, so it differs from the fixed-font rule for developer code.)

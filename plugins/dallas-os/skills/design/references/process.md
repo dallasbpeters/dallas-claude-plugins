@@ -22,3 +22,5 @@
 - Add new features and tips to the docs page in the same change as the UI. (Docs must match the shipped product, so the docs update should ship with the feature.)
 - Expose design guidance as a slash command that takes a topic parameter, such as /design icons. (Dallas wants the design skill to work like Impeccable, with a command and parameters after it.)
 - Run UX audits as Linear project templates, not as a checklist built into the app. (Linear already tracks the audit flow and pipeline, so the app does not need to duplicate it.)
+- Use theme tokens or scale values in class names, not arbitrary bracketed values like rounded-[...] or max-w-[calc(...)]. (Arbitrary values bypass the design tokens and create off-system sizes.)
+- Inline theme values into generated utilities instead of using var() references.

@@ -10,3 +10,5 @@
 - Give related chart data the same color across every chart. (Matching colors help readers link related data.)
 - Use the sequential scale for ordered values and the diverging scale for values that split around a midpoint.
 - Rotate the diverging scale's hue to color groups of chart elements. (Gives each group a distinct color from one scale.)
+- Give each marking type its own color, and let site settings change it. (All markings looked the same, so users could not tell them apart.)
+- Set text and border colors with contrast-color() from the chosen background color. (Users pick the background, so text and borders must stay readable and match it.)

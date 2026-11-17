@@ -11,3 +11,5 @@
 - When a client product should feel like its own brand, do not make it look like RoleModel. Try other UI fonts.
 - Go-to marketing site direction: dark nav, subtle grid lines, small logo.
 - Favor off-white backgrounds with subtle solid grid lines (not dots) for boards and canvases.
+- List every component in the brand guide. (The brand guide should show the full component set.)
+- Use one shared style source for the brand kit and previews, so colors and shadows always match. (Colors and shadows drifted between the brand kit and the review preview.)

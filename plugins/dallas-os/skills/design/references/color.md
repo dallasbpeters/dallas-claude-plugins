@@ -12,3 +12,5 @@
 - Rotate the diverging scale's hue to color groups of chart elements. (Gives each group a distinct color from one scale.)
 - Give each marking type its own color, and let site settings change it. (All markings looked the same, so users could not tell them apart.)
 - Set text and border colors with contrast-color() from the chosen background color. (Users pick the background, so text and borders must stay readable and match it.)
+- Let a color set be copied from one brand and applied to another. (Changing the brand replaced the color set, so colors could not move between brands.)
+- Make embedded widgets inherit the host site's primary colors. (The widget should look like part of the site it sits on.)

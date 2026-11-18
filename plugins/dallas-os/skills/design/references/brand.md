@@ -13,3 +13,5 @@
 - Favor off-white backgrounds with subtle solid grid lines (not dots) for boards and canvases.
 - List every component in the brand guide. (The brand guide should show the full component set.)
 - Use one shared style source for the brand kit and previews, so colors and shadows always match. (Colors and shadows drifted between the brand kit and the review preview.)
+- Present brand merge options as a written comparison on its own page, protected by the same password as the review. (Merge writeups are a separate deliverable that clients access the same way as the review.)
+- Add a new logo to a brand without overwriting the logos it already has. (Adding a board logo should not replace the current brand logo.)

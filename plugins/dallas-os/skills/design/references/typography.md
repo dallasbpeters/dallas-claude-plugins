@@ -15,3 +15,4 @@
 - Keep helper and body text small so notices and card copy do not dominate the layout. (The text in the columns notice was too large.)
 - Set line-height tight so text centers evenly in buttons and labels. (Tall line-height pushed text off center.)
 - Let site owners pick fonts in Studio, and build the type scale from the brand. (Owners need to control their own type. This is for Studio, so it differs from the fixed-font rule for developer code.)
+- Keep font weight when converting text to vector. (Converting bold text to vector made it thinner.)

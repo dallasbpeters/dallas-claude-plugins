@@ -53,3 +53,5 @@
 - Hide a card's header when it has no text. (An empty header added a blank band to the card.)
 - Make glass banners match the hero glass cards, with a configurable background. (Banners above sections should reuse the same glass look as the hero.)
 - Highlight missing table cells with warning or danger background colors instead of a warning banner. (The problem is easier to find when the affected cells themselves are marked.)
+- Expose controls for every part of a panel, including its close button. (Users could not find controls for the panel close button.)
+- Show social previews without browser chrome, and put the size selector in a toolbar above the preview. (The preview should look like the real post, and controls belong in a toolbar.)

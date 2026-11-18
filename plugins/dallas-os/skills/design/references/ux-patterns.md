@@ -48,3 +48,7 @@
 - Show screenshots without long text lists above them. (The text list was too heavy and pushed the screenshots down.)
 - Give pages of the same kind one shared layout and look. (The brand kit page should match the review page, not look like a separate design.)
 - Autosave every change and do not show a save button. (Users were tired of pressing save after each edit.)
+- Let board viewers download any designed frame as an image. (Viewers need to save frames without asking the owner.)
+- When a user draws a selection box for a screenshot, capture only the area inside that box. (The drawn box should set the exact screenshot area.)
+- Show missing items as simple plain text, not a busy layout. (The layout had far too much visual noise.)
+- Show problems as a small danger or warning button in the top navbar, not as a large alert banner. (Huge alert banners add clutter; a navbar button is enough to flag issues.)

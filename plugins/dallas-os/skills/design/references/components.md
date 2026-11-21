@@ -55,3 +55,5 @@
 - Highlight missing table cells with warning or danger background colors instead of a warning banner. (The problem is easier to find when the affected cells themselves are marked.)
 - Expose controls for every part of a panel, including its close button. (Users could not find controls for the panel close button.)
 - Show social previews without browser chrome, and put the size selector in a toolbar above the preview. (The preview should look like the real post, and controls belong in a toolbar.)
+- When an action has only one option, show it as a plain button, not a dropdown. (A dropdown with one item adds a click for no reason.)
+- Style a selected card with a neutral-plus-max background and a 4px neutral-plus-five box-shadow.

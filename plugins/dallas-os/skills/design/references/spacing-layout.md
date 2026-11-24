@@ -20,3 +20,5 @@
 - Give each card slot controls for direction, grid, padding, and gap. (Users need to lay out slot contents without custom styling.)
 - Give cards alignment controls for their slot content. (Users need to align content inside a card.)
 - Let slot items stretch to full width when the user chooses. (Items in a slot could not fill the slot width.)
+- Cap the width of long reading text and keep it centered, never full width. (Full-width text is too hard to read.)
+- Keep one consistent vertical rhythm between stacked sections. (Uneven vertical gaps make the layout look unfinished.)

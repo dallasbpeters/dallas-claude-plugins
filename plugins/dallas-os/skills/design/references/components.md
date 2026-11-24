@@ -57,3 +57,12 @@
 - Show social previews without browser chrome, and put the size selector in a toolbar above the preview. (The preview should look like the real post, and controls belong in a toolbar.)
 - When an action has only one option, show it as a plain button, not a dropdown. (A dropdown with one item adds a click for no reason.)
 - Style a selected card with a neutral-plus-max background and a 4px neutral-plus-five box-shadow.
+- Do not underline navigation links.
+- Use a 4px primary-colored shadow at 8% opacity for card hover, not a black shadow. (A black edge looked harsh on hover.)
+- Make sidebar bottom actions buttons, like other sidebar actions, not centered text links. (Centered blue links looked awkward next to the other actions.)
+- Give inputs a neutral surface color that is offset from the surface they sit on. (Inputs need to read as fields on the surface.)
+- Fill status badges solid instead of outlining them with a border.
+- Size chips and badges to their content, never full width. (Full-width badges looked wrong.)
+- Give text inside diagram shapes font and font-size controls. (Users need to style shape text themselves.)
+- Show elapsed time, skip back and skip forward buttons, a play button, and a fullscreen button on video players. (Users could not find the timer, skip buttons, play button, or fullscreen control.)
+- Keep video player controls light. Do not add a heavy black bar. (A black bar on the player looked obnoxious.)

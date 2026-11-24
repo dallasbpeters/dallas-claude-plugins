@@ -14,3 +14,4 @@
 - Set text and border colors with contrast-color() from the chosen background color. (Users pick the background, so text and borders must stay readable and match it.)
 - Let a color set be copied from one brand and applied to another. (Changing the brand replaced the color set, so colors could not move between brands.)
 - Make embedded widgets inherit the host site's primary colors. (The widget should look like part of the site it sits on.)
+- Use a darker primary blue than the current default brand blue. (A darker blue matches the kit better.)

@@ -8,3 +8,4 @@
 - Use blend modes and shaders only when they stay fast, and make them configurable.
 - Animate chart width changes with a transition instead of an abrupt jump. (Abrupt resizing is jarring.)
 - Let users pick the click target and animation for each step in a sequence. (Sequences were not interactive, so users could not set their trigger or animation.)
+- Animate video text with fluid, engaging motion, not a static white box behind each line. (A plain box behind the text each frame felt flat and not engaging.)

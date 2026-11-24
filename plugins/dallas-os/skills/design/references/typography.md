@@ -16,3 +16,6 @@
 - Set line-height tight so text centers evenly in buttons and labels. (Tall line-height pushed text off center.)
 - Let site owners pick fonts in Studio, and build the type scale from the brand. (Owners need to control their own type. This is for Studio, so it differs from the fixed-font rule for developer code.)
 - Keep font weight when converting text to vector. (Converting bold text to vector made it thinner.)
+- Set body text to at least 16px, font weight 400, and line-height 1.6. (Body text must be easy to read at length.)
+- Set monospace labels and tags to font weight 500 (medium). (Medium weight keeps small mono tags readable next to sans text.)
+- Match the user manual's text styles, line height, and heading weight to the brand kit. (The manual's line height and heading weight did not match the kit.)

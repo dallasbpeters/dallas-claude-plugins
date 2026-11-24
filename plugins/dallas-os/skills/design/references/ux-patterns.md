@@ -52,3 +52,6 @@
 - When a user draws a selection box for a screenshot, capture only the area inside that box. (The drawn box should set the exact screenshot area.)
 - Show missing items as simple plain text, not a busy layout. (The layout had far too much visual noise.)
 - Show problems as a small danger or warning button in the top navbar, not as a large alert banner. (Huge alert banners add clutter; a navbar button is enough to flag issues.)
+- Keep summary badges sticky at the top so they stay in view while scrolling. (Status stays visible as the user scrolls.)
+- Show row delete and action icons only when the row is selected. (Hidden actions reduce clutter until they are needed.)
+- Pin the chat input centered at the bottom, above the content. (The input stays reachable while the user reads.)

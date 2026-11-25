@@ -15,3 +15,6 @@
 - Let a color set be copied from one brand and applied to another. (Changing the brand replaced the color set, so colors could not move between brands.)
 - Make embedded widgets inherit the host site's primary colors. (The widget should look like part of the site it sits on.)
 - Use a darker primary blue than the current default brand blue. (A darker blue matches the kit better.)
+- Keep background colors low in saturation so graphics do not look muddy. (A saturated background made the whole graphic feel muddy.)
+- Use the kit's primary and secondary colors for borders and graphic accents, not off-kit colors. (An off-kit orange broke the brand palette.)
+- Make paper and sheet surfaces slightly off-white, with no box shadow. (Pure white and drop shadows looked harsh and fake.)

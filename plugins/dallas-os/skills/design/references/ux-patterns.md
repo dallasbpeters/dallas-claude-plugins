@@ -55,3 +55,6 @@
 - Keep summary badges sticky at the top so they stay in view while scrolling. (Status stays visible as the user scrolls.)
 - Show row delete and action icons only when the row is selected. (Hidden actions reduce clutter until they are needed.)
 - Pin the chat input centered at the bottom, above the content. (The input stays reachable while the user reads.)
+- Show editor settings in a floating panel that the user can drag anywhere. (Panels that snapped to a screen edge could not be moved.)
+- Show new auto layout groups in the layers panel, and let users drag layers into them. (The layers panel shows the structure, so users can see and change it.)
+- Let users select several items, or items inside a component, and group them from a right-click menu. (Grouping two or more items should work in one step.)

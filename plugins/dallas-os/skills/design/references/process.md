@@ -25,3 +25,5 @@
 - Use theme tokens or scale values in class names, not arbitrary bracketed values like rounded-[...] or max-w-[calc(...)]. (Arbitrary values bypass the design tokens and create off-system sizes.)
 - Inline theme values into generated utilities instead of using var() references.
 - Sync component styles tuned in a review back to the brand kit, and allow new variants of a component. (Review and kit styles drift apart unless changes flow back to the kit.)
+- Fill prototypes with realistic dummy content so layouts show real density. (Sparse mockups hid how much content the real screens would hold.)
+- Build animated sequences as reusable Framer Motion components in the design system. (One shared component keeps motion consistent and easy to reuse across screens.)

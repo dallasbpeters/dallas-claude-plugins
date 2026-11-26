@@ -16,3 +16,4 @@
 - Show a real process in motion, step by step, instead of using a generic entrance. (Motion should show how the work happens, not decorate the screen.)
 - Do not load heavy animation on mobile devices. (Heavy animation is slow and drains battery on phones.)
 - Scale animated graphics with the viewport so they stay large and fit at any screen size. (A fixed-size animation looked small and broke on other screens.)
+- Do not end a brand video on a logo inside a box. (A grid box around the logo ending looked terrible. End on the full brand motion instead.)

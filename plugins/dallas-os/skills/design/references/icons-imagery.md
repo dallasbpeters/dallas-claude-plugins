@@ -12,3 +12,5 @@
 - Show a preview of each icon in the icon picker, and offer a wide set of icons. (Users need to see an icon before choosing it, and the picker had too few icons.)
 - Choose a custom icon that fits each state, such as a battery icon for levels like genius, competency, and frustration. (Dallas chose a battery icon for these three states instead of a generic image.)
 - Choose icons that match what the element actually does, not a generic stand-in. (A wrong table icon confused the review.)
+- Apply blur and other effects to SVG artwork with clipping masks instead of blur filters.
+- Offer dither and other texture effects for SVG artwork as an extra option.

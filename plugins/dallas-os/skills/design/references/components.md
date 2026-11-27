@@ -73,3 +73,6 @@
 - Keep text inside its container and let text fill the container width. (Text that hangs outside its box looks broken.)
 - Let text boxes hug their text by default. (A text box that stays wide leaves empty space around the words.)
 - Put the logo above the sign-in form and fill the side panel with the brand animation. (The form stays focused and the brand stays visible.)
+- Frame screenshots in a browser mockup that looks like the real Safari window. (Dallas wants screenshots to look like a real browser page.)
+- Expose a component's image as an editable property, and let users pick any brand image, including SVGs. (Users need to swap images in components without editing the component itself.)
+- Give editor side panels sliders and dropdowns for controls, using a layout and component look that matches a reference editor. (Background creator controls need to be richer and easier to use.)

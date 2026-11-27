@@ -58,3 +58,5 @@
 - Show editor settings in a floating panel that the user can drag anywhere. (Panels that snapped to a screen edge could not be moved.)
 - Show new auto layout groups in the layers panel, and let users drag layers into them. (The layers panel shows the structure, so users can see and change it.)
 - Let users select several items, or items inside a component, and group them from a right-click menu. (Grouping two or more items should work in one step.)
+- Put secondary tools in one dropdown menu when a toolbar gets crowded. (A short toolbar leaves room to show the screenshot.)
+- Give auto layouts a group-select or layout-select toggle, so clicking one selects the layout rather than its nested items. (Clicking an auto layout selected its nested items, which blocked editing the layout itself.)

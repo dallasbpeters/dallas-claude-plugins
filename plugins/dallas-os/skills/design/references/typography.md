@@ -20,3 +20,4 @@
 - Set monospace labels and tags to font weight 500 (medium). (Medium weight keeps small mono tags readable next to sans text.)
 - Match the user manual's text styles, line height, and heading weight to the brand kit. (The manual's line height and heading weight did not match the kit.)
 - Show headlines as thicker placeholder lines and body copy as thinner lines in graphic text. (Line weight shows the difference between headline and body, like real type.)
+- Give ad text the full font picker with a wide range of font choices. (Dallas wants more font variety than the ad tool offers now.)

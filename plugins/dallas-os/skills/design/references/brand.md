@@ -16,3 +16,5 @@
 - Present brand merge options as a written comparison on its own page, protected by the same password as the review. (Merge writeups are a separate deliverable that clients access the same way as the review.)
 - Add a new logo to a brand without overwriting the logos it already has. (Adding a board logo should not replace the current brand logo.)
 - Show the theme color swatches in the component kit. (The theme colors are visible at a glance.)
+- Pull default ad text styles from the brand context. (Ads should match the brand without manual setup.)
+- Build every site from components in the brand kit so they appear on every view. (Site pages were not showing the brand kit components they should use.)
